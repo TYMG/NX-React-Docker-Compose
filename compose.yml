@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  react-nx-docker:
+    container_name: react-nx-docker
+    build:
+      context: ./react-nx-docker/
+      dockerfile: Dockerfile
+    volumes:
+      - ./react-nx-docker/:/app
+      - /app/node_modules
+      # - ".:/app"
+      # - "/app/node_modules"
+    ports:
+      - 4201:4200
+    stdin_open: true
+    restart: on-failure

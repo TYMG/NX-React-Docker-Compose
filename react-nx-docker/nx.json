@@ -1,0 +1,30 @@
+{
+  "npmScope": "react-nx-docker",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "react-nx-docker": {
+      "tags": []
+    },
+    "react-nx-docker-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-nx-docker"]
+    }
+  }
+}

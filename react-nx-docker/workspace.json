@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "projects": {
+    "react-nx-docker": {
+      "root": "apps/react-nx-docker",
+      "sourceRoot": "apps/react-nx-docker/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/react-nx-docker",
+            "index": "apps/react-nx-docker/src/index.html",
+            "main": "apps/react-nx-docker/src/main.tsx",
+            "polyfills": "apps/react-nx-docker/src/polyfills.ts",
+            "tsConfig": "apps/react-nx-docker/tsconfig.app.json",
+            "assets": [
+              "apps/react-nx-docker/src/favicon.ico",
+              "apps/react-nx-docker/src/assets"
+            ],
+            "styles": ["apps/react-nx-docker/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/react-nx-docker/src/environments/environment.ts",
+                  "with": "apps/react-nx-docker/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "react-nx-docker:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "react-nx-docker:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/react-nx-docker/.eslintrc",
+            "tsConfig": [
+              "apps/react-nx-docker/tsconfig.app.json",
+              "apps/react-nx-docker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/react-nx-docker/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/react-nx-docker/jest.config.js",
+            "tsConfig": "apps/react-nx-docker/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "react-nx-docker-e2e": {
+      "root": "apps/react-nx-docker-e2e",
+      "sourceRoot": "apps/react-nx-docker-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-nx-docker-e2e/cypress.json",
+            "tsConfig": "apps/react-nx-docker-e2e/tsconfig.e2e.json",
+            "devServerTarget": "react-nx-docker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react-nx-docker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/react-nx-docker-e2e/.eslintrc",
+            "tsConfig": ["apps/react-nx-docker-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/react-nx-docker-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      },
+      "component": {
+        "style": "scss"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "react-nx-docker"
+}
