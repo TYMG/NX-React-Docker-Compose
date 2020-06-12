@@ -1,5 +1,11 @@
 node_modules
-build
+coverage
+docker
+tools
+Dockerfile*
+README.md
+LICENSE
+.vscode
 .dockerignore
-Dockerfile
-Dockerfile.prod
+.git
+.gitignore
