@@ -1,21 +1,17 @@
-version: "3.4"
+version: "3"
+
 services:
-  react-nx-api:
-    container_name: react-nx-api
+  react-nx-docker:
+    container_name: react-nx-docker
     build:
-      context: ./react-nx-api/
-      target: react-nx-api
-    networks:
-      tymg:
-  react-nx-ui:
-    container_name: react-nx-ui
-    build:
-      context: ./react-nx-api/
-      target: react-nx-ui
+      context: ./react-nx-docker/
+      dockerfile: Dockerfile
+    volumes:
+      - ./react-nx-docker/:/app
+      - /app/node_modules
+      # - ".:/app"
+      # - "/app/node_modules"
     ports:
-      - 80:80
-      - 3333:3333
-    networks:
-      tymg:
-networks:
-  tymg:
+      - 4201:4200
+    stdin_open: true
+    restart: on-failure
